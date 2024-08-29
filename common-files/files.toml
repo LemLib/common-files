@@ -1,0 +1,23 @@
+[pros-project]
+# Each instance of <||varname||> in a common file will be replaced with the value
+# specified in the repo's lemminator-mainfest.toml
+vars = [
+"repo_name",
+"docs_link",
+"contributors"
+]
+
+[[pros-project.common-files]]
+file_name = "CONTRIBUTING.md"
+file_dest = ".github/CONTRIBUTING.md"
+commit_msg = "blah"
+
+[[pros-project.common-files]]
+file_name = "CODE_OF_CONDUCT.md"
+file_dest = ".github/CODE_OF_CONDUCT.md"
+commit_msg = "blah"
+
+[[pros-project.common-files]]
+file_name = ".clang-format"
+# file_dest by default is the same as file_name
+commit_msg = "blah"
