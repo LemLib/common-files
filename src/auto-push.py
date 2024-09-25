@@ -7,9 +7,10 @@ from sys import stderr, stdin, stdout
 import subprocess
 from github import Github, Auth, GithubException, Repository
 import tomllib
+from time import sleep
 
-def get_git_url(repo_name : str):
-    username = "lemlib-bot"
+def get_git_url(repo_name : str) -> str:
+    username = "leminator3000"
     return f"https://{environ["secrets.pat"]}@github.com/{username}/{repo_name}.git/"
 
 toml_file = Path("common-files/files.toml").open()
@@ -25,9 +26,12 @@ subprocess.run("cd __repos__",check=True,shell=True)
 
 github_user = Github(auth=Auth.Token(environ["secrets.pat"])).get_user()
 for repo in Github.search_repositories(github_user, "org:Lemlib "):
-    fork : Repository = None
+    fork : Repository.Repository = None
     try:
         fork = github_user.get_repo(repo.name)
     except GithubException:
         fork = github_user.create_fork(repo)
-    subprocess.run(["git", "remote", "add", "origin", get_git_url(repo.name)],check=True)
+        fork.rename_branch("main", "maintenance")
+        sleep(5) # allow time for github to update since it seems like rename_branch doesn't block
+        subprocess.run(["git", "clone", fork.git_url],check=True)
+    subprocess.run(["git", "remote", "add", "upstream", repo.git_url],check=True)

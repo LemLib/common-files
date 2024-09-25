@@ -1,0 +1,8 @@
+type = "pros-project"
+# list of files to not copy from common-files
+no_include = []
+
+[vars]
+repo_name = "Lemlib"
+docs_link = "https://lemlib.readthedocs.io/en/stable"
+contributors = "Liam Teale and Lemlib contributors"
