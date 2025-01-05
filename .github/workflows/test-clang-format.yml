@@ -1,0 +1,21 @@
+name: test-clang-format
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        type: string
+        required: true
+
+
+jobs:
+  common-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.18
+      with:
+        source: ${{ inputs.source }}
+        extensions: 'hpp,cpp'
+        clangFormatVersion: 18

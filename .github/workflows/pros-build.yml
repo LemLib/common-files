@@ -1,0 +1,21 @@
+name: PROS Build
+
+on:
+  workflow_call:
+
+jobs:
+  common-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+ 
+      - name: Run LemLib/pros-build
+        id: test
+        uses: LemLib/pros-build@v4.0.0
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.test.outputs.name }}
+          path: ${{ github.workspace }}/template/*
