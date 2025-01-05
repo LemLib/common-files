@@ -1,4 +1,4 @@
-name: Depot
+name: Populate Depot json
 
 on:
   workflow_call:
