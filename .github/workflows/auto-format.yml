@@ -3,7 +3,10 @@ name: format-code
 
 on:
   workflow_call:
-
+    inputs:
+        format-source:
+          required: true
+          type: string
 permissions:
   contents: write
 
@@ -19,7 +22,7 @@ jobs:
     - name: Format code # Outputs the correctly formatted code
       uses: DoozyX/clang-format-lint-action@v0.18 
       with:
-        source: './src/lemlib ./include/lemlib'
+        source: ${{ inputs.format-source }}
         extensions: 'hpp,cpp'
         clangFormatVersion: 18
         inplace: true # Same as `clang-format -i`
