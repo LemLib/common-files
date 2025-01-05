@@ -3,7 +3,7 @@ name: Populate Depot json
 on:
   workflow_call:
     inputs:
-      repo:
+      target-repo:
         type: string
         required: true
       source-repo: 
@@ -23,7 +23,7 @@ jobs:
           # gives the github action the permissions specified above
           token: ${{ github.token }}
           # target repo for depots
-          repo: ${{ inputs.repo }}
+          repo: ${{ inputs.target-repo }}
           # where to read releases from (can be omitted if repo is also the repo from which to read releases from, but it doesn't sem to be working at the moment)
           source-repo: ${{ inputs.source_repo }}
           # makes the json output human readable
