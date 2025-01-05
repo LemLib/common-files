@@ -5,7 +5,7 @@ on:
 
 
 jobs:
-  build:
+  common-files:
     runs-on: ubuntu-latest
 
     steps:
