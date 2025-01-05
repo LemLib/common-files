@@ -2,6 +2,10 @@ name: test-clang-format
 
 on:
   workflow_call:
+    inputs:
+      source:
+        type: string
+        required: true
 
 
 jobs:
@@ -12,6 +16,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: DoozyX/clang-format-lint-action@v0.18
       with:
-        source: './src/lemlib ./include/lemlib'
+        source: ${{ inputs.source }}
         extensions: 'hpp,cpp'
         clangFormatVersion: 18
